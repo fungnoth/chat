@@ -7,22 +7,29 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/chat/assets/index-8Vn1eywM.js"></script>
-  <link rel="stylesheet" crossorigin href="/chat/assets/index-Cw2inLiM.css">
+  <script type="module" crossorigin src="/chat/assets/index-DQXz1fBV.js"></script>
+  <link rel="stylesheet" crossorigin href="/chat/assets/index-CUncOCWg.css">
 </head>
-<body class="main-body px-5">
+<body class="main-body lg:px-5">
     <div class="h-full flex flex-col max-w-5xl gap-4 mx-auto ">
 
-        <div class="conversation px-10 pt-8">
+        <div class="conversation px-3 lg:px-10 pt-8">
             <!-- Conversation bubbles will be added here dynamically -->
         </div>
+
+        <form class="user-form">
+            <input type="text" placeholder="Type your message here..." class="user-form__input">
+            <button type="submit" class="user-form__button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
+            </button>
+        </form>
         
         <!-- Test buttons to add bubbles -->
         <div class="flex gap-4 pb-4 mt-auto items-center justify-center">
-            <button onclick="leftButton()" class="button">
+            <button onclick="addConversationBubble(getPlaceholderText())" class="button">
                 Add Left Bubble
             </button>
-            <button onclick="rightButton()" class="button">
+            <button onclick="addConversationBubble(getPlaceholderText(), true)" class="button">
                 Add Right Bubble
             </button>
         </div>
@@ -39,31 +46,5 @@
         </div>
     </template>
 
-    <script>
-        // The full lorem ipsum string
-        const LOREM = `Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`;
-
-        // Returns a random segment of the lorem ipsum string
-        function getPlaceholderText() {
-            const words = LOREM.split(' ');
-            if (words.length < 2) return LOREM;
-            // Pick two random indices, ensure from < to
-            let from = Math.floor(Math.random() * words.length);
-            let to = Math.floor(Math.random() * words.length);
-            if (from === to) to = (to + 1) % words.length;
-            if (from > to) [from, to] = [to, from];
-            // Slice and join the segment
-            return words.slice(from, to + 1).join(' ');
-        }
-
-        function leftButton() {
-            addConversationBubble(getPlaceholderText())
-        }
-
-        function rightButton() {
-            addConversationBubble(getPlaceholderText(), true)
-        }
-    </script>
-
 </body>
 </html> 
