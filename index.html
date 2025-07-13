@@ -14,13 +14,20 @@
         <div class="conversation px-10 pt-8">
             <!-- Conversation bubbles will be added here dynamically -->
         </div>
+
+        <form class="user-form">
+            <input type="text" placeholder="Type your message here..." class="user-form__input">
+            <button type="submit" class="user-form__button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg>
+            </button>
+        </form>
         
         <!-- Test buttons to add bubbles -->
         <div class="flex gap-4 pb-4 mt-auto items-center justify-center">
-            <button onclick="leftButton()" class="button">
+            <button onclick="addConversationBubble(getPlaceholderText())" class="button">
                 Add Left Bubble
             </button>
-            <button onclick="rightButton()" class="button">
+            <button onclick="addConversationBubble(getPlaceholderText(), true)" class="button">
                 Add Right Bubble
             </button>
         </div>
@@ -36,32 +43,6 @@
             </div>
         </div>
     </template>
-
-    <script>
-        // The full lorem ipsum string
-        const LOREM = `Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`;
-
-        // Returns a random segment of the lorem ipsum string
-        function getPlaceholderText() {
-            const words = LOREM.split(' ');
-            if (words.length < 2) return LOREM;
-            // Pick two random indices, ensure from < to
-            let from = Math.floor(Math.random() * words.length);
-            let to = Math.floor(Math.random() * words.length);
-            if (from === to) to = (to + 1) % words.length;
-            if (from > to) [from, to] = [to, from];
-            // Slice and join the segment
-            return words.slice(from, to + 1).join(' ');
-        }
-
-        function leftButton() {
-            addConversationBubble(getPlaceholderText())
-        }
-
-        function rightButton() {
-            addConversationBubble(getPlaceholderText(), true)
-        }
-    </script>
 
     <script type="module" src="/src/main.js"></script>
 </body>

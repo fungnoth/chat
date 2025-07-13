@@ -3,6 +3,25 @@ import './style.css'
 // You can add your JavaScript code here
 console.log('Vite + Tailwind CSS project loaded!')
 
+// The full lorem ipsum string
+const LOREM = `Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`;
+
+/**
+ * Returns a random segment of the lorem ipsum string
+ * @returns {string} Random text segment
+ */
+function getPlaceholderText() {
+    const words = LOREM.split(' ');
+    if (words.length < 2) return LOREM;
+    // Pick two random indices, ensure from < to
+    let from = Math.floor(Math.random() * words.length);
+    let to = Math.floor(Math.random() * words.length);
+    if (from === to) to = (to + 1) % words.length;
+    if (from > to) [from, to] = [to, from];
+    // Slice and join the segment
+    return words.slice(from, to + 1).join(' ');
+}
+
 /**
  * Adds a new conversation bubble to the conversation container
  * @param {string} text - The text content for the bubble
@@ -47,6 +66,51 @@ function addConversationBubble(text, isRight = false) {
     return bubbleElement;
 }
 
+/**
+ * Handles form submission for user messages
+ * @param {Event} event - The form submit event
+ */
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const input = form.querySelector('.user-form__input');
+    const message = input.value.trim();
+    
+    // Don't add empty messages
+    if (!message) {
+        return;
+    }
+    
+    // Add the user message (right-aligned)
+    addConversationBubble(message, true);
+
+    wait(400).then(() => {
+        addConversationBubble(getPlaceholderText(), false);
+    });
+    
+    // Clear the input field
+    input.value = '';
+    
+    // Focus back to input for better UX
+    input.focus();
+}
+
+/**
+ * Initializes the chat functionality
+ */
+function initializeChat() {
+    const form = document.querySelector('.user-form');
+    const input = document.querySelector('.user-form__input');
+    
+    if (!form || !input) {
+        console.error('Form or input not found');
+        return;
+    }
+    
+    // Add form submit event listener
+    form.addEventListener('submit', handleFormSubmit);
+}
 
 async function wait(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -62,12 +126,16 @@ async function addPlaceholderBubbles() {
     addConversationBubble('Hi! This is a right-aligned placeholder.', true);
 }
 
-// Run the placeholder function when the DOM is fully loaded
-window.addEventListener('DOMContentLoaded', addPlaceholderBubbles);
+// Initialize everything when the DOM is fully loaded
+window.addEventListener('DOMContentLoaded', () => {
+    initializeChat();
+    addPlaceholderBubbles();
+});
 
 // Example usage:
 // addConversationBubble('Hello! This is a new message.');
 // addConversationBubble('This is a right-aligned message.', true);
 
-// Make the function available globally for testing
-window.addConversationBubble = addConversationBubble; 
+// Make functions available globally for testing
+window.addConversationBubble = addConversationBubble;
+window.getPlaceholderText = getPlaceholderText; 

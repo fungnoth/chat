@@ -24,7 +24,7 @@ html, body {
     }
     
     .conversation__bubble {
-        @apply relative w-fit;
+        @apply relative w-fit z-10;
         animation: bubble-up 0.25s;
     }
     .conversation__text {
@@ -93,6 +93,18 @@ html, body {
 
     .lyrics-verse {
         @apply mb-6;
+    }
+
+    .user-form {
+        @apply flex gap-2;
+    }
+    .user-form__input {
+        @apply flex-1 border bg-white border-2 border-amber-200 rounded-full leading-tight px-4 py-3;
+        @apply focus:outline-none focus:border-amber-400;
+    
+    }
+    .user-form__button {
+        @apply bg-amber-500 text-white leading-none flex items-center justify-center font-bold rounded-full w-12;
     }
 
 
