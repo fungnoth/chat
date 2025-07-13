@@ -7,13 +7,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
-  <script type="module" crossorigin src="/chat/assets/index-DQXz1fBV.js"></script>
-  <link rel="stylesheet" crossorigin href="/chat/assets/index-CUncOCWg.css">
+  <script type="module" crossorigin src="/chat/assets/index-CJ-2XmnI.js"></script>
+  <link rel="stylesheet" crossorigin href="/chat/assets/index-C1toFUNZ.css">
 </head>
 <body class="main-body lg:px-5">
-    <div class="h-full flex flex-col max-w-5xl gap-4 mx-auto ">
+    <div class="h-full flex flex-col max-w-5xl mx-auto ">
 
-        <div class="conversation px-3 lg:px-10 pt-8">
+        <div class="conversation px-3 lg:px-10 pt-8 pb-7">
             <!-- Conversation bubbles will be added here dynamically -->
         </div>
 
@@ -25,11 +25,11 @@
         </form>
         
         <!-- Test buttons to add bubbles -->
-        <div class="flex gap-4 pb-4 mt-auto items-center justify-center">
-            <button onclick="addConversationBubble(getPlaceholderText())" class="button">
+        <div class="flex gap-4 h-20 shrink-0 mt-auto items-center justify-center">
+            <button onclick="addConversationBubble(getPlaceholderText())" class="debug-button">
                 Add Left Bubble
             </button>
-            <button onclick="addConversationBubble(getPlaceholderText(), true)" class="button">
+            <button onclick="addConversationBubble(getPlaceholderText(), true)" class="debug-button">
                 Add Right Bubble
             </button>
         </div>
