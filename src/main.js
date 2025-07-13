@@ -1,5 +1,3 @@
-import './style.css'
-
 // You can add your JavaScript code here
 console.log('Vite + Tailwind CSS project loaded!')
 

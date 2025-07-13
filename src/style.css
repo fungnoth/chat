@@ -14,8 +14,12 @@ html, body {
 }
 
 @layer components {
-    .button {
+    .debug-button {
         @apply bg-white border border-blue-950/70 rounded-full text-blue-950 px-4 py-2 max-w-xs flex w-fit;
+        @apply duration-150;
+        @apply hover:bg-teal-50/40 hover:border-teal-400/50 hover:text-teal-950;
+        @apply active:border-teal-400;
+        transition: all 0.15s, padding 0s; 
     }
 
     
