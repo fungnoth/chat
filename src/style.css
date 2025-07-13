@@ -9,7 +9,7 @@ html, body {
 }
 @layer base {
     .main-body {
-        @apply h-screen;
+        @apply h-svh;
     }
 }
 
