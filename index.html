@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative:wght@300..700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/chat/assets/index-8Vn1eywM.js"></script>
+  <link rel="stylesheet" crossorigin href="/chat/assets/index-Cw2inLiM.css">
+</head>
+<body class="main-body px-5">
+    <div class="h-full flex flex-col max-w-5xl gap-4 mx-auto ">
+
+        <div class="conversation px-10 pt-8">
+            <!-- Conversation bubbles will be added here dynamically -->
+        </div>
+        
+        <!-- Test buttons to add bubbles -->
+        <div class="flex gap-4 pb-4 mt-auto items-center justify-center">
+            <button onclick="leftButton()" class="button">
+                Add Left Bubble
+            </button>
+            <button onclick="rightButton()" class="button">
+                Add Right Bubble
+            </button>
+        </div>
+    </div>
+
+    <!-- Template for conversation bubbles -->
+    <template id="conversation-bubble-template">
+        <div class="conversation__bubble">
+            <div class="conversation__decoration conversation__decoration--1"></div>
+            <div class="conversation__decoration conversation__decoration--2"></div>
+            <div class="conversation__bubble-border">
+                <p class="conversation__text"></p>
+            </div>
+        </div>
+    </template>
+
+    <script>
+        // The full lorem ipsum string
+        const LOREM = `Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`;
+
+        // Returns a random segment of the lorem ipsum string
+        function getPlaceholderText() {
+            const words = LOREM.split(' ');
+            if (words.length < 2) return LOREM;
+            // Pick two random indices, ensure from < to
+            let from = Math.floor(Math.random() * words.length);
+            let to = Math.floor(Math.random() * words.length);
+            if (from === to) to = (to + 1) % words.length;
+            if (from > to) [from, to] = [to, from];
+            // Slice and join the segment
+            return words.slice(from, to + 1).join(' ');
+        }
+
+        function leftButton() {
+            addConversationBubble(getPlaceholderText())
+        }
+
+        function rightButton() {
+            addConversationBubble(getPlaceholderText(), true)
+        }
+    </script>
+
+</body>
+</html> 
