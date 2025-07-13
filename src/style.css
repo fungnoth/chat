@@ -17,7 +17,7 @@ html, body {
     .debug-button {
         @apply bg-white border border-blue-950/70 rounded-full text-blue-950 px-4 py-2 max-w-xs flex w-fit;
         @apply duration-150;
-        @apply active:border-teal-400;
+        @apply focus-visible:border-teal-400 focus-visible:bg-teal-50/40 focus-visible:text-teal-950;
         transition: all 0.15s, padding 0s; 
     }
     @media (hover: hover) {
