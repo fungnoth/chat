@@ -1,0 +1,20 @@
+{
+  "name": "tailwind-vite-project",
+  "version": "1.0.0",
+  "description": "A Tailwind CSS project with Vite",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["tailwind", "css", "vite", "web"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "vite": "^5.0.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32"
+  }
+} 

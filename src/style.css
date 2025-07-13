@@ -1,0 +1,121 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities; 
+
+html, body {
+    font-family: "Signika Negative", sans-serif;
+    font-optical-sizing: auto;
+}
+@layer base {
+    .main-body {
+        @apply h-screen;
+    }
+}
+
+@layer components {
+    .button {
+        @apply bg-white border border-blue-950/70 rounded-full text-blue-950 px-4 py-2 max-w-xs flex w-fit;
+    }
+
+    
+    .conversation {
+        @apply flex flex-col grow overflow-y-auto gap-4 mb-4;
+    }
+    
+    .conversation__bubble {
+        @apply relative w-fit;
+        animation: bubble-up 0.25s;
+    }
+    .conversation__text {
+        @apply text-slate-800 font-medium rounded-full max-w-xs relative;
+        @apply text-lg py-4 px-6;
+        @apply  border-teal-400/30 border-2;
+
+        @apply bg-white/70 backdrop-blur-lg;
+    }
+
+    .conversation__decoration {
+        @apply absolute pointer-events-none;
+        animation: decoration-in 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        animation-fill-mode: both;
+    }
+    .conversation__decoration--1 {
+        width: 70%;
+        height: 90%;
+        transform:  
+            rotate(4deg)
+            scale(1.05)
+        ;
+        @apply bg-teal-400/40 rounded-full;
+    }
+    .conversation__decoration--2 {
+        width: 80%;
+        height: 80%;
+        transform:  
+            rotate(-4deg)
+            translate(25%, 40%) 
+            scale(1.05)
+        ;
+        animation-delay: 0.1s;
+        /* aspect-ratio: 1/1; */
+        @apply rounded-full;
+        @apply bg-green-300/50;
+
+    }
+
+    .conversation__bubble--right {
+        @apply ml-auto;
+        .conversation__text {
+            @apply border-amber-400/50;
+        }
+        .conversation__decoration--1{
+            @apply bg-amber-500/40;
+        }
+        .conversation__decoration--2{
+            @apply bg-pink-500/50;
+        }
+
+    }
+    
+    .conversation--right {
+        @apply justify-end;
+    }
+    
+    
+    .lyrics-container {
+        @apply mt-20;
+    }
+    
+    .lyrics-line {
+        @apply text-xl leading-relaxed mb-2 font-medium;
+    }
+
+    .lyrics-verse {
+        @apply mb-6;
+    }
+
+
+}
+@keyframes bubble-up {
+    from {
+        opacity: 0;
+        scale: .95;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes decoration-in {
+    from {
+        opacity: 0;
+        scale: .7;
+    }
+    to {
+        opacity: 1;
+        scale: 1;
+    }
+}
