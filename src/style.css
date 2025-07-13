@@ -17,14 +17,22 @@ html, body {
     .debug-button {
         @apply bg-white border border-blue-950/70 rounded-full text-blue-950 px-4 py-2 max-w-xs flex w-fit;
         @apply duration-150;
-        @apply focus-visible:border-teal-400 focus-visible:bg-teal-50/40 focus-visible:text-teal-950;
-        transition: all 0.15s, padding 0s; 
+        transition: .15s ease-out; 
+    }
+    .debug-button.active {
+        transition: .1s ease-in; 
+        @apply debug-button--pressing;
     }
     @media (hover: hover) {
         .debug-button {
+            transition: .15s ease; 
             @apply hover:bg-teal-50/40 hover:border-teal-400/50 hover:text-teal-950;
         }
 
+    }
+    .debug-button--pressing {
+        @apply border-teal-400 bg-teal-50/40 text-teal-950;
+        @apply border-2 font-bold;
     }
 
     

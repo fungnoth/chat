@@ -1,5 +1,4 @@
-// You can add your JavaScript code here
-console.log('Vite + Tailwind CSS project loaded!')
+const isIos = navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad');
 
 // The full lorem ipsum string
 const LOREM = `Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua`;
@@ -124,16 +123,23 @@ async function addPlaceholderBubbles() {
     addConversationBubble('Hi! This is a right-aligned placeholder.', true);
 }
 
+function initDebugButtons() {
+    const debugButtons = document.querySelectorAll('[data-debug-button]');
+    debugButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            addConversationBubble(getPlaceholderText(), button.dataset.debugButton === 'right');
+            button.classList.add('active');
+            wait(150).then(() => {
+                button.classList.remove('active');
+            });
+        });
+    });
+}
+
 // Initialize everything when the DOM is fully loaded
 window.addEventListener('DOMContentLoaded', () => {
     initializeChat();
     addPlaceholderBubbles();
+
+    initDebugButtons();
 });
-
-// Example usage:
-// addConversationBubble('Hello! This is a new message.');
-// addConversationBubble('This is a right-aligned message.', true);
-
-// Make functions available globally for testing
-window.addConversationBubble = addConversationBubble;
-window.getPlaceholderText = getPlaceholderText; 
